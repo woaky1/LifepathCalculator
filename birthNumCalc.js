@@ -29,32 +29,24 @@ if (monthInteger <= 12) {
 
 dayString = process.argv[3];
 dayInteger = +process.argv[3];
-console.log(dayInteger);
 
 if (dayInteger <= 31) {
     switch (true) {
         case (dayInteger < 10):
             dayFirstDigit = dayInteger;
             daySecondDigit = 0;
-            console.log(dayFirstDigit);
-            console.log(daySecondDigit);
             break;
         case (10 <= dayInteger && dayInteger < 20):
             dayFirstDigit = 1;
             daySecondDigit = +dayString.substr(1,1);
-            console.log(dayFirstDigit);
-            console.log(daySecondDigit);
             break;
         case (20 <= dayInteger && dayInteger < 30):
             dayFirstDigit = 2;
             daySecondDigit = +dayString.substr(1,1);
-            console.log(dayFirstDigit);
-            console.log(daySecondDigit);
             break;
         case (30 <= dayInteger):
             dayFirstDigit = 3;
             daySecondDigit = +dayString.substr(1,1);
-            console.log(daySecondDigit);
             break;
         default:
             console.log("Invalid date");
