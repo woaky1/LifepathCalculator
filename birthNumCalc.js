@@ -12,6 +12,7 @@ var yearFirstDigit;
 var yearSecondDigit;
 var yearThirdDigit;
 var yearFourthDigit;
+var dontRun = false;
 
 monthString = process.argv[2];
 monthInteger = +process.argv[2];
@@ -25,6 +26,7 @@ if (monthInteger <= 12) {
     }
 } else {
     console.log("Invalid date");
+    dontRun = true;
 }
 
 dayString = process.argv[3];
@@ -50,24 +52,33 @@ if (dayInteger <= 31) {
             break;
         default:
             console.log("Invalid date");
+            dontRun = true;
             break;
     }
 }
 
-yearString = process.argv[4];
-yearFirstDigit = +yearString.substr(0,1);
-yearSecondDigit = +yearString.substr(1,1);
-yearThirdDigit = +yearString.substr(2,1);
-yearFourthDigit = +yearString.substr(3,1);
-
-var firstSum = monthFirstDigit + monthSecondDigit + dayFirstDigit + daySecondDigit + yearFirstDigit + yearSecondDigit + yearThirdDigit + yearFourthDigit;
-
-if (firstSum < 10) {
-    console.log("Your life path is " + firstSum + ".")
+yearInteger = +process.argv[4];
+if (yearInteger > 0) {
+    yearString = process.argv[4];
+    yearFirstDigit = +yearString.substr(0,1);
+    yearSecondDigit = +yearString.substr(1,1);
+    yearThirdDigit = +yearString.substr(2,1);
+    yearFourthDigit = +yearString.substr(3,1);
 } else {
-    firstSumString = firstSum.toString();
-    var firstSumFirstInteger = +firstSumString.substr(0,1);
-    var firstSumSecondInteger = +firstSumString.substr(1,1);
-    var secondSum = firstSumFirstInteger + firstSumSecondInteger;
-    console.log("Your life path is " + firstSum + "/" + secondSum);
+    console.log ("Enter a valid date");
+    dontRun = true;
+}
+
+if (dontRun != true) {
+    var firstSum = monthFirstDigit + monthSecondDigit + dayFirstDigit + daySecondDigit + yearFirstDigit + yearSecondDigit + yearThirdDigit + yearFourthDigit;
+
+    if (firstSum < 10) {
+        console.log("Your life path is " + firstSum + ".")
+    } else {
+        firstSumString = firstSum.toString();
+        var firstSumFirstInteger = +firstSumString.substr(0,1);
+        var firstSumSecondInteger = +firstSumString.substr(1,1);
+        var secondSum = firstSumFirstInteger + firstSumSecondInteger;
+        console.log("Your life path is " + firstSum + "/" + secondSum);
+    }
 }
